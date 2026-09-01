@@ -2,3 +2,107 @@ root = true
 
 [*]
 charset = utf-8
+
+[*.cs]
+# Core whitespace
+indent_style = space
+indent_size = 4
+tab_width = 4
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Attributes: keep on same line as what they decorate
+csharp_style_allow_blank_lines_between_consecutive_braces_experimental = false
+
+# Brace style (Allman)
+csharp_new_line_before_open_brace = all
+
+# Single-line if: join short ones onto one line, split long ones
+csharp_preserve_single_line_statements = true
+csharp_preserve_single_line_blocks = true
+braces_for_ifelse = not_required
+
+# Line length
+max_line_length = 120
+
+# Spacing
+csharp_space_after_cast = false
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+csharp_space_between_method_call_parameter_list_parentheses = false
+csharp_space_before_colon_in_inheritance_clause = true
+csharp_space_after_colon_in_inheritance_clause = true
+csharp_space_around_binary_operators = before_and_after
+
+# Empty lines
+csharp_blank_lines_around_region = 1
+csharp_blank_lines_inside_region = 1
+csharp_blank_lines_before_single_line_comment = 0
+dotnet_separate_import_directive_groups = false
+dotnet_sort_system_directives_first = true
+
+# var preferences
+csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = false:suggestion
+
+# Modern C# style
+csharp_style_expression_bodied_methods = never:silent
+# Properties/fields get expression-body suggestions; methods do not
+csharp_style_expression_bodied_properties = true:suggestion
+csharp_prefer_simple_using_statement = true:suggestion
+csharp_style_namespace_declarations = file_scoped:suggestion
+dotnet_style_prefer_conditional_expression_over_assignment = true:suggestion
+
+# ============================================================
+# Analyzer diagnostic overrides
+# ============================================================
+
+# Namespace-folder alignment: suppress for deliberately flat scene namespaces
+dotnet_diagnostic.IDE0130.severity = none
+
+# Meziantou rules incompatible with Godot C# patterns
+# MA0004: ConfigureAwait — Godot's awaitable signals do not support ConfigureAwait
+dotnet_diagnostic.MA0004.severity = none
+# MA0011: IFormatProvider on ToString — noisy for Godot Vector/Color string ops
+dotnet_diagnostic.MA0011.severity = none
+# MA0046: delegate must have 2 params (EventHandler pattern) — Godot signals use bare typed delegates
+dotnet_diagnostic.MA0046.severity = none
+
+# Roslyn / Roslynator rules incompatible with Godot node patterns
+# IDE0044 + FieldCanBeMadeReadOnly: [Export] fields are populated by Godot's serializer AFTER
+# the constructor runs, so they cannot be readonly. The rule otherwise fires on nearly every
+# node script.
+dotnet_diagnostic.IDE0044.severity = none
+# RCS1169: Roslynator's own version of the same rule — same false positive, same reason.
+dotnet_diagnostic.RCS1169.severity = none
+
+# IDE0060 + UnusedParameter: a Godot signal handler must match the signal's delegate
+# signature, so it routinely declares parameters (e.g. Area2D area) it does not use.
+dotnet_diagnostic.IDE0060.severity = none
+# RCS1163: Roslynator's own version of the same rule — same false positive, same reason.
+dotnet_diagnostic.RCS1163.severity = none
+
+# IDE0002: Simplify Member Access
+dotnet_diagnostic.IDE0002.severity = suggestion
+
+# Performance analysis (hot path: _PhysicsProcess, _Process, per-tick loops)
+# Avoid zero-length array heap allocations — use Array.Empty<T>() instead
+dotnet_diagnostic.CA1825.severity = warning
+# Avoid constant arrays passed as arguments (allocates on every call)
+dotnet_diagnostic.CA1861.severity = warning
+# Prefer concrete types over interfaces for local variables (avoids interface dispatch overhead)
+dotnet_diagnostic.CA1859.severity = suggestion
+
+# Temporary suppression
+dotnet_diagnostic.CS0579.severity = none
+
+# S125: this project deliberately keeps disabled debug scaffolding (DebugLabel
+# readout, GD.Print traces) commented out rather than deleted, so it can be
+# re-enabled later. Don't flag or auto-remove intentionally-kept comments.
+dotnet_diagnostic.S125.severity = none
+
+# S1075: Godot's res:// scheme is a virtual resource path, not an OS-level
+# absolute path or URI — this rule has no signal in a Godot project.
+dotnet_diagnostic.S1075.severity = none

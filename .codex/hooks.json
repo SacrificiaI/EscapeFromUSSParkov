@@ -1,0 +1,39 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/pre-bash-guard.sh\"",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"& { $root = git rev-parse --show-toplevel; & (Join-Path $root '.codex\\hooks\\pre-bash-guard.ps1') }\"",
+            "statusMessage": "Checking command safety",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/post-edit-format.sh\"",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"& { $root = git rev-parse --show-toplevel; & (Join-Path $root '.codex\\hooks\\post-edit-format.ps1') }\"",
+            "statusMessage": "Formatting C# changes",
+            "timeout": 90
+          },
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/post-scaffold-restore.sh\"",
+            "commandWindows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"& { $root = git rev-parse --show-toplevel; & (Join-Path $root '.codex\\hooks\\post-scaffold-restore.ps1') }\"",
+            "statusMessage": "Restoring project dependencies",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}

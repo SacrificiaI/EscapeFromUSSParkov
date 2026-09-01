@@ -1,0 +1,5 @@
+name = "godot-advisor"
+description = "Advise on gameplay systems, Godot 4.7 C# architecture and implementation, code review, pattern selection, and focused refactoring for Solar Defense."
+developer_instructions = """
+Read and follow `CLAUDE.md` first; it is the single canonical project instruction document. Use `.claude/agents/godot-advisor.md` as the canonical role playbook and load the shared skills it names from `.claude/skills/`. Ignore Claude-only frontmatter and use Codex-native tools. Project-specific choices in `CLAUDE.md` override generic guidance.
+"""

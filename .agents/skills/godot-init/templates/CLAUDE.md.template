@@ -1,0 +1,200 @@
+<!--
+  godot-init's CLAUDE.md template. Read by SKILL.md Section 3.3.
+
+  Usage: fill every {{PLACEHOLDER}} from the facts gathered in Section 0
+  and the answers gathered in Section 1/derived in Section 2, then write
+  the result as the project's CLAUDE.md. Delete this comment block from
+  the output.
+
+  The spine (down through "## Out of scope") is always emitted. Every
+  block below it is preceded by an HTML-comment TRIGGER note — emit that
+  block in full only when its trigger condition holds; otherwise omit the
+  whole block, heading included. Never emit an empty heading or a
+  placeholder that didn't get filled — if nothing could fill a line, the
+  line doesn't ship.
+-->
+# {{PROJECT_NAME}}
+
+{{IDENTITY_PARAGRAPH}}
+
+## Versions (do not assume newer)
+
+- Godot **{{ENGINE_VERSION}}**{{ENGINE_VERSION_NOTE}}.
+- `Godot.NET.Sdk/{{SDK_VERSION}}`, `TargetFramework {{TFM}}`{{TFM_CONDITIONS}}.
+- {{LANGUAGE_POLICY_LINE}}
+<!-- ANALYZER_LINE: omit this whole bullet if no analyzer packages were detected -->
+- {{ANALYZER_LINE}}
+
+## Build
+
+```
+{{BUILD_COMMAND}}
+```
+
+{{VERIFICATION_BAR_LINE}}
+
+## Architecture
+
+{{ARCHITECTURE_BULLETS}}
+<!-- one bullet per Section 2 recommendation that actually fired -->
+
+## Conventions
+
+{{CONVENTION_BULLETS}}
+<!-- greenfield: the answers chosen during the questionnaire, phrased as
+     decisions ("Node references are [Export] fields."), not questions.
+     existing project: only axes that reached "settled" in Section 0.5,
+     plus any "leaning" axis the user confirmed when asked. State the
+     rule the scan found, not the hit counts — those go in the report
+     (Section 4.3), not here. -->
+
+## Out of scope
+
+{{OUT_OF_SCOPE_BULLETS}}
+<!--
+  Generated from every answer that came back negative. This section is
+  the reason this template exists: the generic Godot C# rules this
+  project's .claude/rules/ and .claude/knowledge/ hold are written for
+  ANY Godot C# project; this is the one place this specific project's
+  deviations from that generic doctrine get written down, so nobody
+  rediscovers them by trial and error. One line per answer below that
+  actually came back negative — omit every row that doesn't apply:
+
+  | Answer | Emit |
+  |---|---|
+  | Networking = Solo | Single-player. No networking, no authority model, no prediction or rollback. Don't introduce multiplayer or fixed-point (Fix64) guidance. |
+  | Determinism = No | Floating-point is fine. No fixed-point math, no lockstep, no replay hashing. |
+  | Modding = None | No mod loading, no def registries, no mod-parity stamps. |
+  | Localization = None | Strings are authored directly. No TranslationServer wiring until localization is a stated goal. |
+  | Live-service = one-and-done | No save-schema migration layer. |
+  | Platform integration = None yet | No Steamworks, EOS, or console SDK integration; no entitlement checks. |
+  | Persistence, modding, and platform all none | No trust boundary — nothing crosses into this game from outside it. Skip input-validation doctrine written for networked or user-content systems. |
+  | Ambition = jam or prototype | Prefer the smallest thing that works. Don't add abstraction layers for a codebase this short-lived. |
+  | Chickensoft = None | Hand-written DI and hand-written state machines are the convention. Don't add a DI or FSM package. |
+  | Sim-View-Bridge did not fire (Section 2) | Logic lives in node scripts. There is no separate simulation layer; don't add one. |
+-->
+
+<!-- ============================================================
+     CONDITIONAL BLOCKS — everything below is gated. Emit a block
+     whole when its TRIGGER holds; otherwise skip it entirely.
+     ============================================================ -->
+
+<!-- TRIGGER: Networking (item 3) is not Solo -->
+## Networking & authority
+
+- Model: {{NETWORKING_MODEL}}{{AUTHORITY_CLAUSE}}. Player ceiling: {{PLAYER_CEILING}}.
+- Session discovery: {{DISCOVERY_LIST}}.
+- Drop-in/drop-out (late-join) is a requirement, not a stretch goal. It runs
+  through the same serialize-authoritative-state → transfer → hydrate
+  pipeline as save/load; a late joiner is save/load with a network in
+  between. Don't build a second hydration path for it.
+- {{DETERMINISM_LINE}}
+<!--
+  DETERMINISM_LINE default (Determinism=No, or Authority != Deterministic
+  lockstep): "Host-authoritative state and float math are the baseline.
+  Don't introduce fixed-point or lockstep."
+  DETERMINISM_LINE override (Determinism=Yes AND Networking=Online
+  multiplayer AND Authority=Deterministic lockstep): "Deterministic
+  lockstep: simulation math is fixed-point, not float; every sim input is
+  an ordered command; replay hashes are the correctness check."
+-->
+
+<!-- TRIGGER: Persistence (item 12) is not trivially local-only, OR Live-service (item 11) = ongoing updates -->
+## Save data
+
+- Scope: {{PERSISTENCE_ANSWER}}.
+- {{CONFLICT_OWNERSHIP_LINE}}
+- {{SCHEMA_VERSION_LINE}}
+<!--
+  SCHEMA_VERSION_LINE only when Live-service = ongoing updates: "Every
+  save carries a schema version. A load path meeting an older version
+  migrates it forward explicitly; one meeting a newer version refuses
+  rather than guessing." Otherwise drop the bullet entirely — not blanked,
+  removed.
+-->
+
+<!-- TRIGGER: Persistence, Modding, or Platform integration is non-none -->
+## Trust boundaries
+
+Anything crossing into the game from outside it — {{BOUNDARY_LIST}} — is
+untrusted input. Validate at the boundary, name the specific failure, and
+refuse. Don't half-load and continue.
+{{ENTITLEMENT_LINE}}
+<!--
+  ENTITLEMENT_LINE only if IAP/DLC entitlements (item 14) was selected:
+  "Entitlements are never taken from the client's own claim of ownership —
+  verify against the platform's receipt API before granting anything."
+-->
+
+<!-- TRIGGER: Modding (item 13) is not None -->
+## Modding — tier {{TIER}}
+
+{{TIER_SCOPE_SENTENCE}} Don't build past this tier without a decision to
+move the tier.
+{{PARITY_LINE}}
+{{TIER_3_LINE}}
+<!--
+  PARITY_LINE only if tier >= 0 AND networking is multiplayer (or
+  lockstep): "Mod parity is a join and load requirement. Every save and
+  every lobby handshake carries the active mod list and versions; compare
+  before a session starts or a save loads, and name each mismatch
+  specifically — missing mod, changed version, added mod. View-only asset
+  reskins that never touch a def or registry are exempt."
+  TIER_3_LINE only if tier == 3: "Tier 3 is full-trust: mod code can do
+  anything the game can, including file and network I/O. There is no
+  sandbox."
+-->
+
+<!-- TRIGGER: Localization (item 15) is not None -->
+## Localization
+
+{{LOCALIZATION_ANSWER}}. No user-facing string is a literal in code or a
+fixed-width label in a scene — text routes through `TranslationServer` and
+lays out in containers that flex. Assume translated text runs 30%+ longer
+than the source language, and that some locales are right-to-left.
+
+<!-- TRIGGER: input devices beyond KB+M, OR remapping=Yes, OR colorblind/subtitle=Yes -->
+## Input & accessibility
+
+- Devices: {{DEVICE_LIST}}.
+- {{REMAP_LINE}}
+- {{ACCESSIBILITY_LINE}}
+
+<!-- TRIGGER: any Chickensoft package selected (item 17), OR a test framework was detected -->
+## Tooling
+
+{{TOOLING_BULLETS}}
+<!--
+  One bullet per package/framework, stating what it replaces:
+  AutoInject replaces a hand-rolled autoload service locator;
+  LogicBlocks replaces a hand-written State pattern implementation;
+  GoDotTest is the verification bar in place of manual play;
+  GodotEnv owns engine and addon installs.
+-->
+
+<!-- TRIGGER: .claude/rules/ or .claude/knowledge/ exists at this project's root -->
+## Where the rules live
+
+{{RULE_FILE_BULLETS}}
+<!--
+  One bullet per file: its path relative to the project root, plus a
+  one-line purpose pulled from that file's own frontmatter `description`
+  or first heading. Do not summarize the file's contents beyond that.
+-->
+
+<!-- TRIGGER: Section 0.6 found a competing instruction file -->
+## Instruction-file precedence
+
+This file is authority. {{COMPETING_FILE_LIST}} also exist and may
+describe an older or conflicting setup — treat them as superseded unless a
+line here says otherwise.
+
+<!--
+  ALWAYS EMITTED — provenance footer, invisible when rendered. Lets a
+  later re-run detect a prior run and diff answers instead of starting
+  over. No separate answers file: a second file would drift from the
+  CLAUDE.md it produced.
+-->
+<!-- godot-init: {{ISO_DATE}} | genre={{…}} net={{…}} det={{…}} dim={{…}}
+     hw={{…}} exports={{…}} team={{…}} ambition={{…}} live={{…}}
+     persist={{…}} mod={{…}} platform={{…}} l10n={{…}} tooling={{…}} -->

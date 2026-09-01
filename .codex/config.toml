@@ -1,0 +1,10 @@
+# Load the repository's canonical CLAUDE.md as Codex project instructions.
+# There is intentionally no parallel AGENTS.md instruction set.
+project_doc_fallback_filenames = ["CLAUDE.md"]
+
+# Roslyn-aware navigation is installed as a global .NET tool on this workstation.
+# It auto-discovers GodotWildJam-96.sln from the repository working directory.
+[mcp_servers.cwm-roslyn-navigator]
+command = "cwm-roslyn-navigator"
+startup_timeout_sec = 30
+tool_timeout_sec = 120
