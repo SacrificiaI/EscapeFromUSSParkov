@@ -8,6 +8,7 @@ obj/
 
 # Visual Studio
 .vs/
+.vscode/
 
 # Project Designs
 Concepts/

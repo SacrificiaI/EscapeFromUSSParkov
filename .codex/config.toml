@@ -3,7 +3,7 @@
 project_doc_fallback_filenames = ["CLAUDE.md"]
 
 # Roslyn-aware navigation is installed as a global .NET tool on this workstation.
-# It auto-discovers GodotWildJam-96.sln from the repository working directory.
+# It auto-discovers "Escape from USS Parkov.sln" from the repository working directory.
 [mcp_servers.cwm-roslyn-navigator]
 command = "cwm-roslyn-navigator"
 startup_timeout_sec = 30

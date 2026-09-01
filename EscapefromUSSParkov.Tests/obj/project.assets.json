@@ -1,11 +1,20 @@
 {
-  "version": 4,
+  "version": 3,
   "targets": {
     "net9.0": {
       "coverlet.collector/6.0.2": {
         "type": "package",
         "build": {
           "build/netstandard2.0/coverlet.collector.targets": {}
+        }
+      },
+      "Meziantou.Analyzer/3.0.200": {
+        "type": "package",
+        "build": {
+          "buildTransitive/Meziantou.Analyzer.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Meziantou.Analyzer.props": {}
         }
       },
       "Microsoft.CodeCoverage/17.12.0": {
@@ -303,6 +312,12 @@
           }
         }
       },
+      "Roslynator.Analyzers/4.16.1": {
+        "type": "package"
+      },
+      "SonarAnalyzer.CSharp/10.33.0.1635": {
+        "type": "package"
+      },
       "System.Reflection.Metadata/1.6.0": {
         "type": "package",
         "compile": {
@@ -493,6 +508,38 @@
         "coverlet-icon.png",
         "coverlet.collector.6.0.2.nupkg.sha512",
         "coverlet.collector.nuspec"
+      ]
+    },
+    "Meziantou.Analyzer/3.0.200": {
+      "sha512": "xDYQDG/pBdvC3r1PcqQw9d8/9dRYxh9xxljjgVydBezpxOUSABjuRjVWNoUmqNByrtWqwJ+nRdAwUuWPbU8uXQ==",
+      "type": "package",
+      "path": "meziantou.analyzer/3.0.200",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "analyzers/dotnet/roslyn4.14/cs/Meziantou.Analyzer.CodeFixers.dll",
+        "analyzers/dotnet/roslyn4.14/cs/Meziantou.Analyzer.dll",
+        "analyzers/dotnet/roslyn4.8/cs/Meziantou.Analyzer.CodeFixers.dll",
+        "analyzers/dotnet/roslyn4.8/cs/Meziantou.Analyzer.dll",
+        "analyzers/dotnet/roslyn5.0/cs/Meziantou.Analyzer.CodeFixers.dll",
+        "analyzers/dotnet/roslyn5.0/cs/Meziantou.Analyzer.dll",
+        "analyzers/dotnet/roslyn5.6/cs/Meziantou.Analyzer.CodeFixers.dll",
+        "analyzers/dotnet/roslyn5.6/cs/Meziantou.Analyzer.dll",
+        "analyzers/dotnet/roslyn5.9/cs/Meziantou.Analyzer.CodeFixers.dll",
+        "analyzers/dotnet/roslyn5.9/cs/Meziantou.Analyzer.dll",
+        "build/Meziantou.Analyzer.props",
+        "buildMultiTargeting/Meziantou.Analyzer.props",
+        "buildTransitive/Meziantou.Analyzer.props",
+        "configuration/all-errors.editorconfig",
+        "configuration/all-suggestions.editorconfig",
+        "configuration/all-warnings.editorconfig",
+        "configuration/default.editorconfig",
+        "configuration/none.editorconfig",
+        "icon.png",
+        "meziantou.analyzer.3.0.200.nupkg.sha512",
+        "meziantou.analyzer.nuspec"
       ]
     },
     "Microsoft.CodeCoverage/17.12.0": {
@@ -778,6 +825,58 @@
         "packageIcon.png"
       ]
     },
+    "Roslynator.Analyzers/4.16.1": {
+      "sha512": "AGzq3UZvIwTGSh9xyIna+Q9F666S8UaLlX/Pk3Iz21qIAWjL8iYporVCcX1k/oi5chrRZ8VJRahup4me4HZptw==",
+      "type": "package",
+      "path": "roslynator.analyzers/4.16.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/roslyn3.8/cs/Roslynator.CSharp.Analyzers.CodeFixes.dll",
+        "analyzers/dotnet/roslyn3.8/cs/Roslynator.CSharp.Analyzers.dll",
+        "analyzers/dotnet/roslyn3.8/cs/Roslynator_Analyzers_Roslynator.CSharp.Workspaces.dll",
+        "analyzers/dotnet/roslyn3.8/cs/Roslynator_Analyzers_Roslynator.CSharp.dll",
+        "analyzers/dotnet/roslyn3.8/cs/Roslynator_Analyzers_Roslynator.Common.dll",
+        "analyzers/dotnet/roslyn3.8/cs/Roslynator_Analyzers_Roslynator.Core.dll",
+        "analyzers/dotnet/roslyn3.8/cs/Roslynator_Analyzers_Roslynator.Workspaces.Common.dll",
+        "analyzers/dotnet/roslyn3.8/cs/Roslynator_Analyzers_Roslynator.Workspaces.Core.dll",
+        "analyzers/dotnet/roslyn4.7/cs/Roslynator.CSharp.Analyzers.CodeFixes.dll",
+        "analyzers/dotnet/roslyn4.7/cs/Roslynator.CSharp.Analyzers.dll",
+        "analyzers/dotnet/roslyn4.7/cs/Roslynator_Analyzers_Roslynator.CSharp.Workspaces.dll",
+        "analyzers/dotnet/roslyn4.7/cs/Roslynator_Analyzers_Roslynator.CSharp.dll",
+        "analyzers/dotnet/roslyn4.7/cs/Roslynator_Analyzers_Roslynator.Common.dll",
+        "analyzers/dotnet/roslyn4.7/cs/Roslynator_Analyzers_Roslynator.Core.dll",
+        "analyzers/dotnet/roslyn4.7/cs/Roslynator_Analyzers_Roslynator.Workspaces.Common.dll",
+        "analyzers/dotnet/roslyn4.7/cs/Roslynator_Analyzers_Roslynator.Workspaces.Core.dll",
+        "docs/README.md",
+        "icon.png",
+        "roslynator.analyzers.4.16.1.nupkg.sha512",
+        "roslynator.analyzers.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "SonarAnalyzer.CSharp/10.33.0.1635": {
+      "sha512": "nOwgvMh7p64z62GTy2n4Ki51DVy4Q2ejxxfuclW6Y5u6Htk1i2RNRqxuONiZ/4aaBi8V6RwzuCcGTOFcoVoQOg==",
+      "type": "package",
+      "path": "sonaranalyzer.csharp/10.33.0.1635",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/SonarAnalyzer.CSharp.dll",
+        "images/sonarsource_64.png",
+        "licenses/LICENSE.txt",
+        "licenses/THIRD_PARTY_LICENSES/Google.Protobuf-LICENSE.txt",
+        "licenses/THIRD_PARTY_LICENSES/Roslyn-LICENSE.txt",
+        "licenses/THIRD_PARTY_LICENSES/StyleCop.Analyzers-LICENSE.txt",
+        "sonaranalyzer.csharp.10.33.0.1635.nupkg.sha512",
+        "sonaranalyzer.csharp.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "System.Reflection.Metadata/1.6.0": {
       "sha512": "COC1aiAJjCoA5GBF+QKL2uLqEBew4JsCkQmoHKbN3TlOZKa2fKLz5CpiRQKDz0RsAOEGsVKqOD5bomsXq/4STQ==",
       "type": "package",
@@ -952,30 +1051,33 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "EscapefromUSSParkov.Sim >= 1.0.0",
+      "Meziantou.Analyzer >= 3.0.200",
       "Microsoft.NET.Test.Sdk >= 17.12.0",
+      "Roslynator.Analyzers >= 4.16.1",
+      "SonarAnalyzer.CSharp >= 10.33.0.1635",
       "coverlet.collector >= 6.0.2",
       "xunit >= 2.9.2",
       "xunit.runner.visualstudio >= 2.8.2"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jocvi\\.nuget\\packages\\": {},
+    "C:\\Users\\nicho\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jocvi\\Documents\\Collection-of-Folders\\Programming\\Godot\\Projects\\EscapeFromUSSParkov\\EscapefromUSSParkov.Tests\\EscapefromUSSParkov.Tests.csproj",
+      "projectUniqueName": "G:\\GameDev stuff\\PracticePhases\\Phase-01\\escape-from-uss-parkov\\EscapefromUSSParkov.Tests\\EscapefromUSSParkov.Tests.csproj",
       "projectName": "EscapefromUSSParkov.Tests",
-      "projectPath": "C:\\Users\\jocvi\\Documents\\Collection-of-Folders\\Programming\\Godot\\Projects\\EscapeFromUSSParkov\\EscapefromUSSParkov.Tests\\EscapefromUSSParkov.Tests.csproj",
-      "packagesPath": "C:\\Users\\jocvi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jocvi\\Documents\\Collection-of-Folders\\Programming\\Godot\\Projects\\EscapeFromUSSParkov\\EscapefromUSSParkov.Tests\\obj\\",
+      "projectPath": "G:\\GameDev stuff\\PracticePhases\\Phase-01\\escape-from-uss-parkov\\EscapefromUSSParkov.Tests\\EscapefromUSSParkov.Tests.csproj",
+      "packagesPath": "C:\\Users\\nicho\\.nuget\\packages\\",
+      "outputPath": "G:\\GameDev stuff\\PracticePhases\\Phase-01\\escape-from-uss-parkov\\EscapefromUSSParkov.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\jocvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nicho\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -984,21 +1086,20 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\jocvi\\Documents\\Collection-of-Folders\\Programming\\Godot\\Projects\\EscapeFromUSSParkov\\EscapefromUSSParkov.Sim\\EscapefromUSSParkov.Sim.csproj": {
-              "projectPath": "C:\\Users\\jocvi\\Documents\\Collection-of-Folders\\Programming\\Godot\\Projects\\EscapeFromUSSParkov\\EscapefromUSSParkov.Sim\\EscapefromUSSParkov.Sim.csproj"
+            "G:\\GameDev stuff\\PracticePhases\\Phase-01\\escape-from-uss-parkov\\EscapefromUSSParkov.Sim\\EscapefromUSSParkov.Sim.csproj": {
+              "projectPath": "G:\\GameDev stuff\\PracticePhases\\Phase-01\\escape-from-uss-parkov\\EscapefromUSSParkov.Sim\\EscapefromUSSParkov.Sim.csproj"
             }
           }
         }
       },
       "warningProperties": {
+        "allWarningsAsErrors": true,
         "warnAsError": [
           "NU1605"
         ]
@@ -1008,16 +1109,33 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.300"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
-        "framework": "net9.0",
         "targetAlias": "net9.0",
         "dependencies": {
+          "Meziantou.Analyzer": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[3.0.200, )"
+          },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
             "version": "[17.12.0, )"
+          },
+          "Roslynator.Analyzers": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[4.16.1, )"
+          },
+          "SonarAnalyzer.CSharp": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[10.33.0.1635, )"
           },
           "coverlet.collector": {
             "target": "Package",
@@ -1048,7 +1166,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

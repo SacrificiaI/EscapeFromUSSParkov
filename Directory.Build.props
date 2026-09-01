@@ -1,0 +1,41 @@
+<Project>
+
+  <!--
+    Repo-wide build settings for all three projects (.Sim, .Tests, .View).
+    Adopts NASA/JPL "Power of Ten" rule 10 (zero-warning compilation) per
+    .claude/knowledge/decisions/006-nasa-power-of-ten-adapted-for-godot-csharp.md:
+    the analyzer suite plus TreatWarningsAsErrors turns static-analysis
+    findings into a build gate instead of optional advice. The suppressions
+    these packages need for Godot's C# patterns live in .editorconfig, each
+    with a stated reason.
+  -->
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      RCS* = Roslynator, S* = SonarAnalyzer, MA* = Meziantou.Analyzer -
+      the three prefixes .editorconfig already carries suppressions for.
+      ErrorProne.NET.CoreAnalyzers (also in ADR-006's set) is skipped here:
+      it ships beta-only, and Phase 1's "warning-free accepted build" gate
+      is not worth pinning to a pre-release analyzer.
+    -->
+    <PackageReference Include="Roslynator.Analyzers" Version="4.16.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.33.0.1635">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Meziantou.Analyzer" Version="3.0.200">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

@@ -58,6 +58,10 @@ dotnet_style_prefer_conditional_expression_over_assignment = true:suggestion
 # ============================================================
 # Analyzer diagnostic overrides
 # ============================================================
+# Analyzer packages (Roslynator RCS*, SonarAnalyzer S*, Meziantou MA*) plus
+# TreatWarningsAsErrors are wired in /Directory.Build.props, per
+# .claude/knowledge/decisions/006-nasa-power-of-ten-adapted-for-godot-csharp.md.
+# Every suppression below states a Godot-specific reason.
 
 # Namespace-folder alignment: suppress for deliberately flat scene namespaces
 dotnet_diagnostic.IDE0130.severity = none

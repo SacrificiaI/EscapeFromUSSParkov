@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "6WWBPsJQhZY=",
+  "dgSpecHash": "MQv4O1Q9hqA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jocvi\\Documents\\Collection-of-Folders\\Programming\\Godot\\Projects\\EscapeFromUSSParkov\\EscapefromUSSParkov.Sim\\EscapefromUSSParkov.Sim.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "G:\\GameDev stuff\\PracticePhases\\Phase-01\\escape-from-uss-parkov\\EscapefromUSSParkov.Sim\\EscapefromUSSParkov.Sim.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nicho\\.nuget\\packages\\meziantou.analyzer\\3.0.200\\meziantou.analyzer.3.0.200.nupkg.sha512",
+    "C:\\Users\\nicho\\.nuget\\packages\\roslynator.analyzers\\4.16.1\\roslynator.analyzers.4.16.1.nupkg.sha512",
+    "C:\\Users\\nicho\\.nuget\\packages\\sonaranalyzer.csharp\\10.33.0.1635\\sonaranalyzer.csharp.10.33.0.1635.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -6,9 +6,9 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${config:godotToolsCsharp.editorPath.godot4}",
+      "program": "${config:godotTools.editorPath.godot4}",
       "args": [],
-      "cwd": "${workspaceFolder}/GodotWildJam96.Game",
+      "cwd": "${workspaceFolder}/EscapefromUSSParkov.View",
       "stopAtEntry": false,
       "console": "internalConsole"
     },
@@ -17,9 +17,9 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${config:godotToolsCsharp.editorPath.godot4}",
+      "program": "${config:godotTools.editorPath.godot4}",
       "args": ["${fileDirname}/${fileBasenameNoExtension}.tscn"],
-      "cwd": "${workspaceFolder}/GodotWildJam96.Game",
+      "cwd": "${workspaceFolder}/EscapefromUSSParkov.View",
       "stopAtEntry": false,
       "console": "internalConsole"
     },
@@ -30,7 +30,7 @@
       "preLaunchTask": "build",
       "program": "${env:GODOT4}",
       "args": ["--remote-debug", "tcp://127.0.0.1:6007"],
-      "cwd": "${workspaceFolder}/GodotWildJam96.Game",
+      "cwd": "${workspaceFolder}/EscapefromUSSParkov.View",
       "stopAtEntry": false
     }
   ]
