@@ -1,6 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 .export/
+.vscode/
 
 # .NET build output
 bin/

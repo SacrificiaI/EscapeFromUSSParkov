@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net8.0": {
       "Meziantou.Analyzer/3.0.200": {
@@ -113,23 +113,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nicho\\.nuget\\packages\\": {},
+    "C:\\Users\\jocvi\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\GameDev stuff\\PracticePhases\\Phase-01\\escape-from-uss-parkov\\EscapefromUSSParkov.Sim\\EscapefromUSSParkov.Sim.csproj",
+      "projectUniqueName": "c:\\Users\\jocvi\\Documents\\Collection-of-Folders\\Programming\\Godot\\Projects\\EscapeFromUSSParkov\\EscapefromUSSParkov.Sim\\EscapefromUSSParkov.Sim.csproj",
       "projectName": "EscapefromUSSParkov.Sim",
-      "projectPath": "G:\\GameDev stuff\\PracticePhases\\Phase-01\\escape-from-uss-parkov\\EscapefromUSSParkov.Sim\\EscapefromUSSParkov.Sim.csproj",
-      "packagesPath": "C:\\Users\\nicho\\.nuget\\packages\\",
-      "outputPath": "G:\\GameDev stuff\\PracticePhases\\Phase-01\\escape-from-uss-parkov\\EscapefromUSSParkov.Sim\\obj\\",
+      "projectPath": "c:\\Users\\jocvi\\Documents\\Collection-of-Folders\\Programming\\Godot\\Projects\\EscapeFromUSSParkov\\EscapefromUSSParkov.Sim\\EscapefromUSSParkov.Sim.csproj",
+      "packagesPath": "C:\\Users\\jocvi\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\jocvi\\Documents\\Collection-of-Folders\\Programming\\Godot\\Projects\\EscapeFromUSSParkov\\EscapefromUSSParkov.Sim\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\nicho\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jocvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -138,10 +138,12 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {}
         }
@@ -157,10 +159,11 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net8.0": {
+        "framework": "net8.0",
         "targetAlias": "net8.0",
         "dependencies": {
           "Meziantou.Analyzer": {
@@ -198,7 +201,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
