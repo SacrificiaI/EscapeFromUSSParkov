@@ -1,14 +1,11 @@
 <Project>
-
-  <!--
-    Repo-wide build settings for all three projects (.Sim, .Tests, .View).
+  <!--Repo-wide build settings for all three projects (.Sim, .Tests, .View).
     Adopts NASA/JPL "Power of Ten" rule 10 (zero-warning compilation) per
     .claude/knowledge/decisions/006-nasa-power-of-ten-adapted-for-godot-csharp.md:
     the analyzer suite plus TreatWarningsAsErrors turns static-analysis
     findings into a build gate instead of optional advice. The suppressions
     these packages need for Godot's C# patterns live in .editorconfig, each
-    with a stated reason.
-  -->
+    with a stated reason.-->
 
   <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
