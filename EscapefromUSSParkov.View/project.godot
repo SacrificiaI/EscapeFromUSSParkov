@@ -29,8 +29,8 @@ window/stretch/aspect="expand"
 
 [dotnet]
 
-project/assembly_name="Escape from USS Parkov"
-project/solution_directory="C:\\Users\\jocvi\\Documents\\Collection-of-Folders\\Programming\\Godot\\Projects\\EscapeFromUSSParkov"
+project/assembly_name="EscapefromUSSParkov.View"
+project/solution_directory=".."
 
 [editor]
 

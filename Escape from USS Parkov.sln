@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EscapefromUSSParkov.View", "EscapefromUSSParkov.View", "{95311267-4457-4E3E-37FC-304A3B3FA88F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Escape from USS Parkov", "EscapefromUSSParkov.View\Escape from USS Parkov.csproj", "{4646D44C-025D-4B4F-A668-63B625ED8F2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscapefromUSSParkov.View", "EscapefromUSSParkov.View\EscapefromUSSParkov.View.csproj", "{4646D44C-025D-4B4F-A668-63B625ED8F2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscapefromUSSParkov.Sim", "EscapefromUSSParkov.Sim\EscapefromUSSParkov.Sim.csproj", "{9C1EC2D2-29E5-46F9-A4BA-63323A9762C5}"
 EndProject
