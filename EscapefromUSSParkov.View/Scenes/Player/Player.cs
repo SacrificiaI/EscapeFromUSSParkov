@@ -14,7 +14,7 @@ public sealed partial class Player : CharacterBody2D
 
     [Export] private Line2D _aimLine;
 
-    // Camera clamping variables to prevent camera from exiting level borders
+    // Camera limits that constrain the camera to the level bounds.
     [Export] private int _cameraLeft = -5000000;
     [Export] private int _cameraRight = 5000000;
     [Export] private int _cameraTop = -5000000;
@@ -29,12 +29,17 @@ public sealed partial class Player : CharacterBody2D
     public override void _Ready()
     {
         SetLimits();
+
+        // Sets initial position to the node's position in-engine
+        _player.Position = SimVector.ToSim(Position);
+
         _aimLine.AddPoint(Vector2.Zero);
         _aimLine.AddPoint(Vector2.Zero);
     }
 
     public override void _Process(double delta)
     {
+        // Move inputs are stored to the private field, used in _PhysicsProcess()
         _input = new(
             SimVector.ToSim(
                 Input.GetVector("move_left", "move_right", "move_up", "move_down")
@@ -52,6 +57,8 @@ public sealed partial class Player : CharacterBody2D
     {
         float dt = (float)delta;
 
+        // Advances the Sim using the private input and physics timestep.
+        // Mirrors the Sim position onto the Godot node.
         _player.Tick(_input, dt);
         Position = SimVector.ToGodot(_player.Position);
     }
