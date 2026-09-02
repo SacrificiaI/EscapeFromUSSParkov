@@ -1,4 +1,6 @@
 using System;
+using EscapefromUSSParkov.Classes.Bridge;
+using EscapefromUSSParkov.Sim.Player;
 using Godot;
 
 namespace EscapefromUSSParkov.View;
@@ -6,8 +8,6 @@ namespace EscapefromUSSParkov.View;
 public sealed partial class Player : CharacterBody2D
 {
     #region Properties
-    private const float _velocity = 150.0f;
-
     [Export] private AnimatedSprite2D _sprite;
     [Export] private CollisionShape2D _collision;
     [Export] private Camera2D _camera;
@@ -19,6 +19,9 @@ public sealed partial class Player : CharacterBody2D
     [Export] private int _cameraRight = 5000000;
     [Export] private int _cameraTop = -5000000;
     [Export] private int _cameraBottom = 5000000;
+
+    private readonly PlayerMotion _player = new();
+    private PlayerInput _input;
 
     private Vector2 _direction;
     #endregion
@@ -32,7 +35,10 @@ public sealed partial class Player : CharacterBody2D
 
     public override void _Process(double delta)
     {
-        _direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
+        _input = new(
+            SimVector.ToSim(
+                Input.GetVector("move_left", "move_right", "move_up", "move_down")
+            ));
 
         bool aiming = Input.IsActionPressed("aim");
         _aimLine.Visible = aiming;
@@ -45,8 +51,9 @@ public sealed partial class Player : CharacterBody2D
     public override void _PhysicsProcess(double delta)
     {
         float dt = (float)delta;
-        Position += _velocity * _direction * dt;
-        MoveAndSlide();
+
+        _player.Tick(_input, dt);
+        Position = SimVector.ToGodot(_player.Position);
     }
 
     private void SetLimits()
