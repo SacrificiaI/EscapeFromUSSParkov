@@ -40,7 +40,7 @@ this file override generic guidance there.
   `GodotTargetPlatform=android` — no `export_presets.cfg` exists yet.
 - `EscapefromUSSParkov.Sim` and `.Tests` set `<Nullable>enable</Nullable>`
   and `<ImplicitUsings>enable</ImplicitUsings>`; the View project
-  (`Escape from USS Parkov.csproj`) sets neither. New Sim/test code is
+  (`EscapefromUSSParkov.View.csproj`) sets neither. New Sim/test code is
   nullable-aware with implicit usings; new View code declares its `using`s
   and is not nullable-annotated. Don't "fix" one side to match the other.
 - Analyzers and warning enforcement are wired repo-wide in
