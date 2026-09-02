@@ -5,6 +5,7 @@ namespace EscapefromUSSParkov.View;
 
 public sealed partial class Player : CharacterBody2D
 {
+    #region Properties
     private const float _velocity = 300.0f;
 
     [Export] private AnimatedSprite2D _sprite;
@@ -18,6 +19,7 @@ public sealed partial class Player : CharacterBody2D
     [Export] private int _cameraBottom = 5000000;
 
     private Vector2 _direction;
+    #endregion
 
     public override void _Ready()
     {
