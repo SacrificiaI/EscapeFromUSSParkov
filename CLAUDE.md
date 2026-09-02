@@ -40,9 +40,9 @@ this file override generic guidance there.
   `GodotTargetPlatform=android` — no `export_presets.cfg` exists yet.
 - `EscapefromUSSParkov.Sim` and `.Tests` set `<Nullable>enable</Nullable>`
   and `<ImplicitUsings>enable</ImplicitUsings>`; the View project
-  (`EscapefromUSSParkov.View.csproj`) sets neither. New Sim/test code is
-  nullable-aware with implicit usings; new View code declares its `using`s
-  and is not nullable-annotated. Don't "fix" one side to match the other.
+  (`EscapefromUSSParkov.View.csproj`) sets `<ImplicitUsings>enable</ImplicitUsings>`
+  but not `<Nullable>`. New Sim/test code is nullable-aware; new View code
+  is not nullable-annotated. Don't "fix" one side to match the other.
 - Analyzers and warning enforcement are wired repo-wide in
   [`Directory.Build.props`](Directory.Build.props): `Roslynator.Analyzers`,
   `SonarAnalyzer.CSharp`, `Meziantou.Analyzer`, plus
@@ -113,9 +113,9 @@ editor.
   The rule seam — and only genuinely pure, engine-free rule code with a
   reason to be tested — goes in `.Sim`. Anything needing
   `Node`/`Resource`/`GD.*`/`Input.*` is `.View`, always.
-- One flat, file-scoped namespace per assembly: `EscapefromUSSParkov`
-  (View), `EscapefromUSSParkov.Sim`, `EscapefromUSSParkov.Tests`. Folders
-  add no namespace segment; `IDE0130` is off.
+- One flat, file-scoped namespace per assembly: `EscapefromUSSParkov.View`,
+  `EscapefromUSSParkov.Sim`, `EscapefromUSSParkov.Tests`. Folders add no
+  namespace segment; `IDE0130` is off.
 - Node references are `[Export]` fields wired in the editor
   (`node_paths=PackedStringArray(...)` in the `.tscn`). No `GetNode<T>()`
   or `%UniqueName` (ADR-002).

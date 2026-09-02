@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace EscapeFromUSSParkov.View;
+namespace EscapefromUSSParkov.View;
 
 public sealed partial class Player : CharacterBody2D
 {
