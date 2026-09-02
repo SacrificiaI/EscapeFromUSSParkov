@@ -33,8 +33,19 @@ public sealed partial class Player : CharacterBody2D
         // Sets initial position to the node's position in-engine
         _player.Position = SimVector.ToSim(Position);
 
+        // Movement animation
+        _sprite.Play("idle");
+
         _aimLine.AddPoint(Vector2.Zero);
         _aimLine.AddPoint(Vector2.Zero);
+    }
+
+    private void SetLimits()
+    {
+        _camera.LimitLeft = _cameraLeft;
+        _camera.LimitRight = _cameraRight;
+        _camera.LimitTop = _cameraTop;
+        _camera.LimitBottom = _cameraBottom;
     }
 
     public override void _Process(double delta)
@@ -45,6 +56,8 @@ public sealed partial class Player : CharacterBody2D
                 Input.GetVector("move_left", "move_right", "move_up", "move_down")
             ));
 
+        AnimateMoveSideways();
+
         bool aiming = Input.IsActionPressed("aim");
         _aimLine.Visible = aiming;
         if (aiming)
@@ -52,6 +65,22 @@ public sealed partial class Player : CharacterBody2D
             _aimLine.SetPointPosition(1, ToLocal(GetGlobalMousePosition()));
         }
     }
+
+    private void AnimateMoveSideways()
+    {
+        Vector2 velocity = SimVector.ToGodot(_player.Velocity);
+        if (velocity.X != 0)
+        {
+            _sprite.Play("move_side");
+            _sprite.FlipH = velocity.X > 0;
+        }
+        else
+        {
+            _sprite.Play("idle");
+
+        }
+    }
+
 
     public override void _PhysicsProcess(double delta)
     {
@@ -61,13 +90,5 @@ public sealed partial class Player : CharacterBody2D
         // Mirrors the Sim position onto the Godot node.
         _player.Tick(_input, dt);
         Position = SimVector.ToGodot(_player.Position);
-    }
-
-    private void SetLimits()
-    {
-        _camera.LimitLeft = _cameraLeft;
-        _camera.LimitRight = _cameraRight;
-        _camera.LimitTop = _cameraTop;
-        _camera.LimitBottom = _cameraBottom;
     }
 }
