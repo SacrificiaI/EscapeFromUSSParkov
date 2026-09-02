@@ -1,12 +1,11 @@
 using System;
 using Godot;
 
-namespace EscapefromUSSParkov;
+namespace EscapeFromUSSParkov.View;
 
-public partial class EventBus : Node
+public sealed partial class GameManager : Node
 {
-
-    public static EventBus Instance { get; private set; }
+    public static GameManager Instance { get; private set; }
 
     public override void _EnterTree()
     {
@@ -18,5 +17,4 @@ public partial class EventBus : Node
 
         Instance = this;
     }
-
 }

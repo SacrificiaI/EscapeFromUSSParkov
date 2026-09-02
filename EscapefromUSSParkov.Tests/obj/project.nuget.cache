@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6abCeib38Dk=",
+  "dgSpecHash": "yaKIgyWX9rs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jocvi\\Documents\\Collection-of-Folders\\Programming\\Godot\\Projects\\EscapeFromUSSParkov\\EscapefromUSSParkov.Tests\\EscapefromUSSParkov.Tests.csproj",
+  "projectFilePath": "c:\\Users\\jocvi\\Documents\\Collection-of-Folders\\Programming\\Godot\\Projects\\EscapeFromUSSParkov\\EscapefromUSSParkov.Tests\\EscapefromUSSParkov.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jocvi\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",
     "C:\\Users\\jocvi\\.nuget\\packages\\meziantou.analyzer\\3.0.200\\meziantou.analyzer.3.0.200.nupkg.sha512",
