@@ -11,9 +11,7 @@ public sealed partial class Player : CharacterBody2D
     [Export] private CollisionShape2D _collision;
     [Export] private Camera2D _camera;
 
-    // Camera clamp box, applied in SetLimits(). Defaults are a huge unbounded box (matching
-    // Camera2D's own engine defaults) so a level that doesn't override these in the editor
-    // gets no clamping at all, rather than an accidentally tiny or inverted one.
+    // Camera clamping variables to prevent camera from exiting level borders
     [Export] private int _cameraLeft = -5000000;
     [Export] private int _cameraRight = 5000000;
     [Export] private int _cameraTop = -5000000;
