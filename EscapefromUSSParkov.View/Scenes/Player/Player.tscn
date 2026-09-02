@@ -1,13 +1,33 @@
 [gd_scene format=3 uid="uid://s0s6tx8r2q5p"]
 
 [ext_resource type="Script" uid="uid://di62qrbqlo47r" path="res://Scenes/Player/Player.cs" id="1_s0eop"]
+[ext_resource type="Texture2D" uid="uid://dw5xmhfonsym3" path="res://Assets/Players/temp-player-01.png" id="2_ft8w5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h54ih"]
+atlas = ExtResource("2_ft8w5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0eop"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h54ih")
+}],
+"loop": 1,
+"name": &"temp",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0grf"]
+radius = 15.0
 
 [node name="Player" type="CharacterBody2D" unique_id=638747636]
+scale = Vector2(2, 2)
 script = ExtResource("1_s0eop")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1886857927]
+sprite_frames = SubResource("SpriteFrames_s0eop")
+animation = &"temp"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068244061]
 shape = SubResource("CapsuleShape2D_p0grf")

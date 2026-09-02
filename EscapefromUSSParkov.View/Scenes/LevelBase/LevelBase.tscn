@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://8pat7l26g44i"]
 
 [ext_resource type="Script" uid="uid://dobqkvtr7anlc" path="res://Scenes/LevelBase/LevelBase.cs" id="1_5ufo3"]
+[ext_resource type="PackedScene" uid="uid://s0s6tx8r2q5p" path="res://Scenes/Player/Player.tscn" id="2_bgw71"]
+[ext_resource type="PackedScene" uid="uid://dqldeeqmm1eiy" path="res://Scenes/GameHud/GameHud.tscn" id="3_78m1b"]
 
 [node name="LevelBase" type="Control" unique_id=1941503275]
 layout_mode = 3
@@ -10,3 +12,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5ufo3")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=979757611]
+
+[node name="Player" parent="." unique_id=638747636 instance=ExtResource("2_bgw71")]
+position = Vector2(725, 505)
+
+[node name="Enemies" type="Node" parent="." unique_id=872552878]
+
+[node name="ObjectMaker" type="Node" parent="." unique_id=185748738]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=861260944]
+
+[node name="GameHud" parent="CanvasLayer" unique_id=1624976725 instance=ExtResource("3_78m1b")]
