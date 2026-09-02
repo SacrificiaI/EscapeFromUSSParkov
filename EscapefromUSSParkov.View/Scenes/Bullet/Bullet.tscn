@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c5agtj34ksqlw"]
+
+[ext_resource type="Texture2D" uid="uid://b6xqklsirt5bk" path="res://Scenes/Bullet/Bullet.png" id="1_7u3a6"]
+
+[node name="Bullet" type="Node2D" unique_id=469966706]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=890210310]
+texture = ExtResource("1_7u3a6")

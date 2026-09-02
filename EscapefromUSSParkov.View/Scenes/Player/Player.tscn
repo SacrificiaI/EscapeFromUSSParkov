@@ -22,12 +22,13 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0grf"]
 radius = 15.0
 
-[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera")]
+[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_aimLine")]
 scale = Vector2(2, 2)
 script = ExtResource("1_s0eop")
 _sprite = NodePath("AnimatedSprite2D")
 _collision = NodePath("CollisionShape2D")
 _camera = NodePath("PlayerCam")
+_aimLine = NodePath("Line2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1886857927]
 sprite_frames = SubResource("SpriteFrames_s0eop")
@@ -37,3 +38,8 @@ animation = &"temp"
 shape = SubResource("CapsuleShape2D_p0grf")
 
 [node name="PlayerCam" parent="." unique_id=235957436 instance=ExtResource("3_h54ih")]
+
+[node name="Line2D" type="Line2D" parent="." unique_id=812063317]
+visible = false
+width = 1.0
+default_color = Color(1, 0, 0, 1)
