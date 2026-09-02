@@ -1,6 +1,6 @@
 using Godot;
 
-namespace EscapefromUSSParkov;
+namespace EscapefromUSSParkov.View;
 
 public partial class LevelBase : Control
 {

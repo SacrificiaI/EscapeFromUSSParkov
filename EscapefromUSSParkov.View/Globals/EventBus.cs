@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace EscapefromUSSParkov;
+namespace EscapefromUSSParkov.View;
 
 public partial class EventBus : Node
 {
