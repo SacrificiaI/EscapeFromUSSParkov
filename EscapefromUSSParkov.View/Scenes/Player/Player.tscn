@@ -23,7 +23,6 @@ animations = [{
 radius = 15.0
 
 [node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera")]
-scale = Vector2(2, 2)
 script = ExtResource("1_s0eop")
 _sprite = NodePath("AnimatedSprite2D")
 _collision = NodePath("CollisionShape2D")
@@ -37,3 +36,4 @@ animation = &"temp"
 shape = SubResource("CapsuleShape2D_p0grf")
 
 [node name="PlayerCam" parent="." unique_id=235957436 instance=ExtResource("3_h54ih")]
+zoom = Vector2(2.4, 2.4)
