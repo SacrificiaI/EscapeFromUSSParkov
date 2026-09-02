@@ -6,7 +6,7 @@ namespace EscapefromUSSParkov.View;
 public sealed partial class Player : CharacterBody2D
 {
     #region Properties
-    private const float _velocity = 300.0f;
+    private const float _velocity = 150.0f;
 
     [Export] private AnimatedSprite2D _sprite;
     [Export] private CollisionShape2D _collision;

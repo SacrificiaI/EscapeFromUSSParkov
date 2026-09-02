@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"$HOME/.vscode/extensions\" -maxdepth 1 -iname \"dantrz.godot-tools-csharp*\" 2>/dev/null)",
+      "Read(//c/Users/jocvi/.vscode/extensions/**)"
+    ]
+  }
+}
