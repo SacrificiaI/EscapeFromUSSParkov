@@ -8,6 +8,9 @@ namespace EscapefromUSSParkov.View;
 public sealed partial class Player : CharacterBody2D
 {
     #region Properties
+    // The front arm's texture is rotated 180deg; correct with a half turn.
+    private const float FrontArmRotationCorrection = Mathf.Pi;
+
     [Export] private AnimatedSprite2D _sprite;
     [Export] private CollisionShape2D _collision;
     [Export] private Camera2D _camera;
@@ -31,6 +34,8 @@ public sealed partial class Player : CharacterBody2D
     private bool _facingRight;
     private float _frontArmPivotRestX;
     private float _frontArmRestRotation;
+    private float _frontArmRestPositionX;
+    private float _frontArmRestOffsetX;
     #endregion
 
     public override void _Ready()
@@ -48,7 +53,9 @@ public sealed partial class Player : CharacterBody2D
         _aimLine.AddPoint(Vector2.Zero);
 
         _frontArmPivotRestX = _frontArmPivot.Position.X;
-        _frontArmRestRotation = _frontArm.Rotation;
+        _frontArmRestRotation = _frontArm.Rotation + FrontArmRotationCorrection;
+        _frontArmRestPositionX = _frontArm.Position.X;
+        _frontArmRestOffsetX = _frontArm.Offset.X;
     }
 
     private void SetLimits()
@@ -74,6 +81,12 @@ public sealed partial class Player : CharacterBody2D
             _frontArmPivot.LookAt(mouseGlobalPosition);
             _facingRight = mouseGlobalPosition.X > GlobalPosition.X;
         }
+        else
+        {
+            // LookAt only runs while aiming, so reset to facing instead of
+            // leaving the pivot frozen at the last aim angle.
+            _frontArmPivot.Rotation = _facingRight ? 0f : Mathf.Pi - (Mathf.Pi / 2);
+        }
 
         ApplyFacing();
     }
@@ -83,16 +96,19 @@ public sealed partial class Player : CharacterBody2D
     {
         _sprite.FlipH = _facingRight;
 
-        // Hand-tuned: the shoulder isn't quite symmetric about x=0, so the
-        // mirrored pivot needs a small nudge back onto it.
-        const float frontArmFlipCorrectionX = 0.1f;
-        _frontArmPivot.Position = _frontArmPivot.Position with
-        {
-            X = _facingRight ? -_frontArmPivotRestX + frontArmFlipCorrectionX : _frontArmPivotRestX,
-        };
+        float pivotX = _facingRight ? -_frontArmPivotRestX : _frontArmPivotRestX;
+        _frontArmPivot.Position = new Vector2(pivotX, _frontArmPivot.Position.Y);
 
         _frontArm.FlipH = _facingRight;
         _frontArm.Rotation = _facingRight ? MirrorRotation(_frontArmRestRotation) : _frontArmRestRotation;
+
+        // FlipH mirrors the drawn texture but not Position/Offset, so those
+        // need mirroring by hand or the art swings way off during rotation.
+        float armX = _facingRight ? -_frontArmRestPositionX : _frontArmRestPositionX;
+        _frontArm.Position = new Vector2(armX, _frontArm.Position.Y);
+
+        float armOffsetX = _facingRight ? -_frontArmRestOffsetX : _frontArmRestOffsetX;
+        _frontArm.Offset = new Vector2(armOffsetX, _frontArm.Offset.Y);
     }
 
     // Mirroring maps angle θ to (π - θ), so re-aligning to local +X needs -θ - π.
@@ -125,10 +141,10 @@ public sealed partial class Player : CharacterBody2D
                 _facingRight = velocity.X > 0;
             }
         }
-        else
-        {
-            _sprite.Play("idle");
-        }
+        // else
+        // {
+        //     _sprite.Play("idle");
+        // }
 
         // Arm has no idle pose yet, so hide it outside aiming/movement.
         _frontArmPivot.Visible = aiming || movingSideways;
