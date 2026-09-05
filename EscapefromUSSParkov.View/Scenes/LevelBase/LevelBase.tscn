@@ -30,6 +30,7 @@ tile_set = SubResource("TileSet_3lxj6")
 
 [node name="Player" parent="." unique_id=638747636 instance=ExtResource("2_bgw71")]
 position = Vector2(725, 505)
+scale = Vector2(1, 1)
 _cameraLeft = -50
 _cameraRight = 1500
 _cameraTop = -50

@@ -14,7 +14,7 @@ public sealed partial class Player : CharacterBody2D
 
     [Export] private Line2D _aimLine;
 
-    // Camera clamping variables to prevent camera from exiting level borders
+    // Camera limits that constrain the camera to the level bounds.
     [Export] private int _cameraLeft = -5000000;
     [Export] private int _cameraRight = 5000000;
     [Export] private int _cameraTop = -5000000;
@@ -29,16 +29,34 @@ public sealed partial class Player : CharacterBody2D
     public override void _Ready()
     {
         SetLimits();
+
+        // Sets initial position to the node's position in-engine
+        _player.Position = SimVector.ToSim(Position);
+
+        // Movement animation
+        _sprite.Play("idle");
+
         _aimLine.AddPoint(Vector2.Zero);
         _aimLine.AddPoint(Vector2.Zero);
     }
 
+    private void SetLimits()
+    {
+        _camera.LimitLeft = _cameraLeft;
+        _camera.LimitRight = _cameraRight;
+        _camera.LimitTop = _cameraTop;
+        _camera.LimitBottom = _cameraBottom;
+    }
+
     public override void _Process(double delta)
     {
+        // Move inputs are stored to the private field, used in _PhysicsProcess()
         _input = new(
             SimVector.ToSim(
                 Input.GetVector("move_left", "move_right", "move_up", "move_down")
             ));
+
+        AnimateMoveSideways();
 
         bool aiming = Input.IsActionPressed("aim");
         _aimLine.Visible = aiming;
@@ -48,19 +66,29 @@ public sealed partial class Player : CharacterBody2D
         }
     }
 
+    private void AnimateMoveSideways()
+    {
+        Vector2 velocity = SimVector.ToGodot(_player.Velocity);
+        if (velocity.X != 0)
+        {
+            _sprite.Play("move_side");
+            _sprite.FlipH = velocity.X > 0;
+        }
+        else
+        {
+            _sprite.Play("idle");
+
+        }
+    }
+
+
     public override void _PhysicsProcess(double delta)
     {
         float dt = (float)delta;
 
+        // Advances the Sim using the private input and physics timestep.
+        // Mirrors the Sim position onto the Godot node.
         _player.Tick(_input, dt);
         Position = SimVector.ToGodot(_player.Position);
-    }
-
-    private void SetLimits()
-    {
-        _camera.LimitLeft = _cameraLeft;
-        _camera.LimitRight = _cameraRight;
-        _camera.LimitTop = _cameraTop;
-        _camera.LimitBottom = _cameraBottom;
     }
 }
