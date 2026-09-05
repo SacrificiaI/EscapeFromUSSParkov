@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://8iveux2vg47u" path="res://Assets/Players/Temp_IDLE_0003.png" id="4_epg6k"]
 [ext_resource type="Texture2D" uid="uid://bdyj5fij0l27c" path="res://Assets/Players/Temp_IDLE_0004.png" id="5_0u84n"]
 [ext_resource type="Texture2D" uid="uid://dct8d4e5e370v" path="res://Assets/Players/Temp_WALK_0004.png" id="5_ji083"]
+[ext_resource type="Texture2D" uid="uid://cgmvothftmq63" path="res://Assets/Players/Body-NoArm/Temp_BackArm.png" id="6_backarm"]
+[ext_resource type="Texture2D" uid="uid://bawp7pagbnxb" path="res://Assets/Players/Body-NoArm/Temp_FrontArm.png" id="6_frontarm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s0eop"]
 animations = [{
@@ -61,18 +63,28 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0grf"]
 radius = 15.0
 
-[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_aimLine")]
+[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_armPivot", "_aimLine")]
 scale = Vector2(2, 2)
 script = ExtResource("1_s0eop")
 _sprite = NodePath("AnimatedSprite2D")
 _collision = NodePath("CollisionShape2D")
 _camera = NodePath("PlayerCam")
+_armPivot = NodePath("ArmPivot")
 _aimLine = NodePath("Line2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1886857927]
 sprite_frames = SubResource("SpriteFrames_s0eop")
-animation = &"idle"
-frame_progress = 0.9580432
+animation = &"move_side"
+
+[node name="ArmPivot" type="Marker2D" parent="." unique_id=553057549]
+
+[node name="BackArm" type="Sprite2D" parent="ArmPivot" unique_id=1034874733]
+z_index = -1
+texture = ExtResource("6_backarm")
+
+[node name="FrontArm" type="Sprite2D" parent="ArmPivot" unique_id=579551767]
+z_index = 1
+texture = ExtResource("6_frontarm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068244061]
 visible = false

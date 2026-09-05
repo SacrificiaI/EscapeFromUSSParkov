@@ -12,6 +12,7 @@ public sealed partial class Player : CharacterBody2D
     [Export] private CollisionShape2D _collision;
     [Export] private Camera2D _camera;
 
+    [Export] private Marker2D _armPivot;
     [Export] private Line2D _aimLine;
 
     // Camera limits that constrain the camera to the level bounds.
@@ -62,7 +63,9 @@ public sealed partial class Player : CharacterBody2D
         _aimLine.Visible = aiming;
         if (aiming)
         {
-            _aimLine.SetPointPosition(1, ToLocal(GetGlobalMousePosition()));
+            Vector2 mouseGlobalPosition = GetGlobalMousePosition();
+            _aimLine.SetPointPosition(1, ToLocal(mouseGlobalPosition));
+            _armPivot.LookAt(mouseGlobalPosition);
         }
     }
 
