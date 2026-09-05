@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://3dgf1mvx06sl" path="res://Assets/Players/Temp_IDLE_0002.png" id="3_i5acl"]
 [ext_resource type="Texture2D" uid="uid://8iveux2vg47u" path="res://Assets/Players/Temp_IDLE_0003.png" id="4_epg6k"]
 [ext_resource type="Texture2D" uid="uid://bdyj5fij0l27c" path="res://Assets/Players/Temp_IDLE_0004.png" id="5_0u84n"]
-[ext_resource type="Texture2D" uid="uid://cgmvothftmq63" path="res://Assets/Players/Body-NoArm/Temp_BackArm.png" id="6_backarm"]
 [ext_resource type="Texture2D" uid="uid://bawp7pagbnxb" path="res://Assets/Players/Body-NoArm/Temp_FrontArm.png" id="6_frontarm"]
 [ext_resource type="Texture2D" uid="uid://cjy0ufaxy5u5t" path="res://Assets/Players/Body-NoArm/Temp_Body_0001.png" id="6_i5acl"]
 [ext_resource type="Texture2D" uid="uid://c7p1jliryf00g" path="res://Assets/Players/Body-NoArm/Temp_Body_0002.png" id="7_epg6k"]
@@ -63,29 +62,15 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0grf"]
 radius = 15.0
 
-[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_backArmPivot", "_backArm", "_frontArmPivot", "_frontArm", "_aimLine")]
+[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_frontArmPivot", "_frontArm", "_aimLine")]
 scale = Vector2(2, 2)
 script = ExtResource("1_s0eop")
 _sprite = NodePath("AnimatedSprite2D")
 _collision = NodePath("CollisionShape2D")
 _camera = NodePath("PlayerCam")
-_backArmPivot = NodePath("BackArmPivot")
-_backArm = NodePath("BackArmPivot/BackArm")
 _frontArmPivot = NodePath("FrontArmPivot")
 _frontArm = NodePath("FrontArmPivot/FrontArm")
 _aimLine = NodePath("Line2D")
-
-[node name="BackArmPivot" type="Marker2D" parent="." unique_id=553057549]
-visible = false
-z_index = -1
-position = Vector2(-2, -5.5)
-
-[node name="BackArm" type="Sprite2D" parent="BackArmPivot" unique_id=1034874733]
-visible = false
-z_index = -1
-rotation = -2.385865
-texture = ExtResource("6_backarm")
-offset = Vector2(1.09, 4.935)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1886857927]
 sprite_frames = SubResource("SpriteFrames_s0eop")
@@ -93,7 +78,7 @@ animation = &"move_side"
 frame_progress = 0.14391612
 
 [node name="FrontArmPivot" type="Marker2D" parent="." unique_id=187879782]
-position = Vector2(1.935, -5.5)
+position = Vector2(1.6, -6.2)
 
 [node name="FrontArm" type="Sprite2D" parent="FrontArmPivot" unique_id=579551767]
 z_index = 1

@@ -12,8 +12,6 @@ public sealed partial class Player : CharacterBody2D
     [Export] private CollisionShape2D _collision;
     [Export] private Camera2D _camera;
 
-    [Export] private Marker2D _backArmPivot;
-    [Export] private Sprite2D _backArm;
     [Export] private Marker2D _frontArmPivot;
     [Export] private Sprite2D _frontArm;
     [Export] private Line2D _aimLine;
@@ -31,9 +29,7 @@ public sealed partial class Player : CharacterBody2D
 
     // Left-facing rest pose, captured in _Ready() for ApplyFacing() to mirror.
     private bool _facingRight;
-    private float _backArmPivotRestX;
     private float _frontArmPivotRestX;
-    private float _backArmRestRotation;
     private float _frontArmRestRotation;
     #endregion
 
@@ -50,9 +46,7 @@ public sealed partial class Player : CharacterBody2D
         _aimLine.AddPoint(Vector2.Zero);
         _aimLine.AddPoint(Vector2.Zero);
 
-        _backArmPivotRestX = _backArmPivot.Position.X;
         _frontArmPivotRestX = _frontArmPivot.Position.X;
-        _backArmRestRotation = _backArm.Rotation;
         _frontArmRestRotation = _frontArm.Rotation;
     }
 
@@ -76,7 +70,6 @@ public sealed partial class Player : CharacterBody2D
         {
             Vector2 mouseGlobalPosition = GetGlobalMousePosition();
             _aimLine.SetPointPosition(1, ToLocal(mouseGlobalPosition));
-            _backArmPivot.LookAt(mouseGlobalPosition);
             _frontArmPivot.LookAt(mouseGlobalPosition);
             _facingRight = mouseGlobalPosition.X > GlobalPosition.X;
         }
@@ -84,15 +77,11 @@ public sealed partial class Player : CharacterBody2D
         ApplyFacing();
     }
 
-    // Mirrors the body and both arms across x=0 when facing right.
+    // Mirrors the body and arm across x=0 when facing right.
     private void ApplyFacing()
     {
         _sprite.FlipH = _facingRight;
 
-        _backArmPivot.Position = _backArmPivot.Position with
-        {
-            X = _facingRight ? -_backArmPivotRestX : _backArmPivotRestX,
-        };
         // Hand-tuned: the shoulder isn't quite symmetric about x=0, so the
         // mirrored pivot needs a small nudge back onto it.
         const float frontArmFlipCorrectionX = 0.1f;
@@ -101,9 +90,7 @@ public sealed partial class Player : CharacterBody2D
             X = _facingRight ? -_frontArmPivotRestX + frontArmFlipCorrectionX : _frontArmPivotRestX,
         };
 
-        _backArm.FlipH = _facingRight;
         _frontArm.FlipH = _facingRight;
-        _backArm.Rotation = _facingRight ? MirrorRotation(_backArmRestRotation) : _backArmRestRotation;
         _frontArm.Rotation = _facingRight ? MirrorRotation(_frontArmRestRotation) : _frontArmRestRotation;
     }
 
@@ -142,8 +129,7 @@ public sealed partial class Player : CharacterBody2D
             _sprite.Play("idle");
         }
 
-        // Front arm has no idle pose yet, so hide it outside aiming/movement.
-        // Back arm is retired (single-arm now) and left under manual control.
+        // Arm has no idle pose yet, so hide it outside aiming/movement.
         _frontArmPivot.Visible = aiming || movingSideways;
     }
 
