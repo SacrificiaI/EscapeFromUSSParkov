@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dobqkvtr7anlc" path="res://Scenes/LevelBase/LevelBase.cs" id="1_5ufo3"]
 [ext_resource type="Texture2D" uid="uid://ccjlmmou6ows3" path="res://Assets/Background/temp-tile-01.png" id="2_3lxj6"]
 [ext_resource type="PackedScene" uid="uid://s0s6tx8r2q5p" path="res://Scenes/Player/Player.tscn" id="2_bgw71"]
-[ext_resource type="Texture2D" uid="uid://iefscup3rowc" path="res://Assets/Background/Environment32.png" id="2_lmtt4"]
+[ext_resource type="Texture2D" uid="uid://waeptbr6rqvq" path="res://Assets/Background/Environment32.png" id="2_lmtt4"]
 [ext_resource type="PackedScene" uid="uid://dqldeeqmm1eiy" path="res://Scenes/GameHud/GameHud.tscn" id="3_78m1b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ooqsx"]

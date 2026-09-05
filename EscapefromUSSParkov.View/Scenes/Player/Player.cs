@@ -41,7 +41,8 @@ public sealed partial class Player : CharacterBody2D
         _player.Position = SimVector.ToSim(Position);
 
         // Movement animation
-        _sprite.Play("idle");
+        // _sprite.Play("idle");
+        _sprite.Play("move_side");
 
         _aimLine.AddPoint(Vector2.Zero);
         _aimLine.AddPoint(Vector2.Zero);
