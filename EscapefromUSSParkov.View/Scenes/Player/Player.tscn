@@ -1,18 +1,38 @@
 [gd_scene format=3 uid="uid://s0s6tx8r2q5p"]
 
 [ext_resource type="Script" uid="uid://di62qrbqlo47r" path="res://Scenes/Player/Player.cs" id="1_s0eop"]
-[ext_resource type="Texture2D" uid="uid://b7txbg502nwm0" path="res://Assets/Player/MainCharacter_Walk_Side_NoArms_001.png" id="2_t26db"]
-[ext_resource type="Texture2D" uid="uid://bmois76ta3u3g" path="res://Assets/Player/MainCharacter_Walk_Side_NoArms_002.png" id="3_fk5o5"]
+[ext_resource type="Texture2D" uid="uid://cs60n20kwhsd1" path="res://Assets/Player/three-quarter-view/MainCharacter_Idle_34_NoArms_0001.png" id="2_esmjy"]
+[ext_resource type="Texture2D" uid="uid://c80g6nc0qmrk0" path="res://Assets/Player/three-quarter-view/MainCharacter_Idle_34_NoArms_0002.png" id="3_6tu5v"]
 [ext_resource type="PackedScene" uid="uid://bymgpyopjx5d" path="res://Scenes/PlayerCam/PlayerCam.tscn" id="3_h54ih"]
-[ext_resource type="Texture2D" uid="uid://c4dv3gdvdt5lw" path="res://Assets/Player/MainCharacter_Walk_Side_NoArms_003.png" id="4_825xp"]
-[ext_resource type="Texture2D" uid="uid://dini1sil1v4m6" path="res://Assets/Player/MainCharacter_Walk_Side_NoArms_004.png" id="5_ji083"]
+[ext_resource type="Texture2D" uid="uid://bv1ph7f80ty52" path="res://Assets/Player/three-quarter-view/MainCharacter_Idle_34_NoArms_0003.png" id="4_spxdj"]
+[ext_resource type="Texture2D" uid="uid://yhe4cdow7pag" path="res://Assets/Player/three-quarter-view/MainCharacter_Idle_34_NoArms_0004.png" id="5_0objx"]
 [ext_resource type="Texture2D" uid="uid://odc04sogee34" path="res://Assets/Player/MainCharacter_Arm_00.png" id="6_0kmp4"]
+[ext_resource type="Texture2D" uid="uid://cv33m6xvk3wx2" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_34_NoArms_0001.png" id="6_w71ue"]
+[ext_resource type="Texture2D" uid="uid://dg34rcvipo1wn" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_34_NoArms_0002.png" id="7_1e6p3"]
+[ext_resource type="Texture2D" uid="uid://dkd8gfx8d2jbk" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_34_NoArms_0003.png" id="8_yb677"]
+[ext_resource type="Texture2D" uid="uid://b1iajq2rsw72b" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_34_NoArms_0004.png" id="9_8cj01"]
+[ext_resource type="Texture2D" uid="uid://clte0fg8d8an7" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_Back_34_NoArms_0001.png" id="10_i2g7t"]
+[ext_resource type="Texture2D" uid="uid://c1b2pb7fj5hiq" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_Back_34_NoArms_0002.png" id="11_io2mu"]
+[ext_resource type="Texture2D" uid="uid://vxgks6l7rux4" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_Back_34_NoArms_0003.png" id="12_e5iqy"]
+[ext_resource type="Texture2D" uid="uid://cfjmxhlkvsqjk" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_Back_34_NoArms_0004.png" id="13_8t5qx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s0eop"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_esmjy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6tu5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_spxdj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0objx")
+}],
 "loop": 1,
-"name": &"idle",
+"name": &"idle_up",
 "speed": 4.0
 }, {
 "frames": [],
@@ -22,25 +42,37 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_t26db")
+"texture": ExtResource("6_w71ue")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_fk5o5")
+"texture": ExtResource("7_1e6p3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_825xp")
+"texture": ExtResource("8_yb677")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ji083")
+"texture": ExtResource("9_8cj01")
 }],
 "loop": 1,
 "name": &"move_side",
-"speed": 8.0
+"speed": 6.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_i2g7t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_io2mu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_e5iqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8t5qx")
+}],
 "loop": 1,
 "name": &"move_up",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0grf"]
@@ -58,9 +90,11 @@ _aimLine = NodePath("Line2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1886857927]
 sprite_frames = SubResource("SpriteFrames_s0eop")
-animation = &"idle"
+animation = &"move_side"
+frame_progress = 0.46125707
 
 [node name="FrontArmPivot" type="Marker2D" parent="." unique_id=187879782]
+visible = false
 position = Vector2(1.6, -6.2)
 
 [node name="FrontArm" type="Sprite2D" parent="FrontArmPivot" unique_id=579551767]

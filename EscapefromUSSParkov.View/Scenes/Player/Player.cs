@@ -94,7 +94,8 @@ public sealed partial class Player : CharacterBody2D
     // Mirrors the body and arm across x=0 when facing right.
     private void ApplyFacing()
     {
-        _sprite.FlipH = _facingRight;
+        // Body art now rests facing +X, so flip only when facing left.
+        _sprite.FlipH = !_facingRight;
 
         float pivotX = _facingRight ? -_frontArmPivotRestX : _frontArmPivotRestX;
         _frontArmPivot.Position = new Vector2(pivotX, _frontArmPivot.Position.Y);
