@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" uid="uid://di62qrbqlo47r" path="res://Scenes/Player/Player.cs" id="1_s0eop"]
 [ext_resource type="Texture2D" uid="uid://fdcnvsu3lq8g" path="res://Assets/Players/Temp_IDLE_0001.png" id="2_0kmp4"]
-[ext_resource type="Texture2D" uid="uid://bp61721oo3tvh" path="res://Assets/Players/Temp_WALK_0001.png" id="2_t26db"]
-[ext_resource type="Texture2D" uid="uid://nmj3mdbu1rh2" path="res://Assets/Players/Temp_WALK_0002.png" id="3_fk5o5"]
 [ext_resource type="PackedScene" uid="uid://bymgpyopjx5d" path="res://Scenes/PlayerCam/PlayerCam.tscn" id="3_h54ih"]
 [ext_resource type="Texture2D" uid="uid://3dgf1mvx06sl" path="res://Assets/Players/Temp_IDLE_0002.png" id="3_i5acl"]
-[ext_resource type="Texture2D" uid="uid://bfqat5lpma13h" path="res://Assets/Players/Temp_WALK_0003.png" id="4_825xp"]
 [ext_resource type="Texture2D" uid="uid://8iveux2vg47u" path="res://Assets/Players/Temp_IDLE_0003.png" id="4_epg6k"]
 [ext_resource type="Texture2D" uid="uid://bdyj5fij0l27c" path="res://Assets/Players/Temp_IDLE_0004.png" id="5_0u84n"]
-[ext_resource type="Texture2D" uid="uid://dct8d4e5e370v" path="res://Assets/Players/Temp_WALK_0004.png" id="5_ji083"]
 [ext_resource type="Texture2D" uid="uid://cgmvothftmq63" path="res://Assets/Players/Body-NoArm/Temp_BackArm.png" id="6_backarm"]
 [ext_resource type="Texture2D" uid="uid://bawp7pagbnxb" path="res://Assets/Players/Body-NoArm/Temp_FrontArm.png" id="6_frontarm"]
+[ext_resource type="Texture2D" uid="uid://cjy0ufaxy5u5t" path="res://Assets/Players/Body-NoArm/Temp_Body_0001.png" id="6_i5acl"]
+[ext_resource type="Texture2D" uid="uid://c7p1jliryf00g" path="res://Assets/Players/Body-NoArm/Temp_Body_0002.png" id="7_epg6k"]
+[ext_resource type="Texture2D" uid="uid://cb8wpndecfo7q" path="res://Assets/Players/Body-NoArm/Temp_Body_0003.png" id="8_0u84n"]
+[ext_resource type="Texture2D" uid="uid://beoix1y0n76vu" path="res://Assets/Players/Body-NoArm/Temp_Body_0004.png" id="9_esmjy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s0eop"]
 animations = [{
@@ -39,16 +39,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_t26db")
+"texture": ExtResource("6_i5acl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_fk5o5")
+"texture": ExtResource("7_epg6k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_825xp")
+"texture": ExtResource("8_0u84n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ji083")
+"texture": ExtResource("9_esmjy")
 }],
 "loop": 1,
 "name": &"move_side",
@@ -63,28 +63,44 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0grf"]
 radius = 15.0
 
-[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_armPivot", "_aimLine")]
+[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_backArmPivot", "_backArm", "_frontArmPivot", "_frontArm", "_aimLine")]
 scale = Vector2(2, 2)
 script = ExtResource("1_s0eop")
 _sprite = NodePath("AnimatedSprite2D")
 _collision = NodePath("CollisionShape2D")
 _camera = NodePath("PlayerCam")
-_armPivot = NodePath("ArmPivot")
+_backArmPivot = NodePath("BackArmPivot")
+_backArm = NodePath("BackArmPivot/BackArm")
+_frontArmPivot = NodePath("FrontArmPivot")
+_frontArm = NodePath("FrontArmPivot/FrontArm")
 _aimLine = NodePath("Line2D")
+
+[node name="BackArmPivot" type="Marker2D" parent="." unique_id=553057549]
+visible = false
+z_index = -1
+position = Vector2(-2, -5.5)
+
+[node name="BackArm" type="Sprite2D" parent="BackArmPivot" unique_id=1034874733]
+visible = false
+z_index = -1
+rotation = -2.385865
+texture = ExtResource("6_backarm")
+offset = Vector2(1.09, 4.935)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1886857927]
 sprite_frames = SubResource("SpriteFrames_s0eop")
 animation = &"move_side"
+frame_progress = 0.14391612
 
-[node name="ArmPivot" type="Marker2D" parent="." unique_id=553057549]
+[node name="FrontArmPivot" type="Marker2D" parent="." unique_id=187879782]
+position = Vector2(1.935, -5.5)
 
-[node name="BackArm" type="Sprite2D" parent="ArmPivot" unique_id=1034874733]
-z_index = -1
-texture = ExtResource("6_backarm")
-
-[node name="FrontArm" type="Sprite2D" parent="ArmPivot" unique_id=579551767]
+[node name="FrontArm" type="Sprite2D" parent="FrontArmPivot" unique_id=579551767]
 z_index = 1
+position = Vector2(0.06499994, -0.30499983)
+rotation = -2.5062928
 texture = ExtResource("6_frontarm")
+offset = Vector2(-0.61, 4.77)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068244061]
 visible = false
