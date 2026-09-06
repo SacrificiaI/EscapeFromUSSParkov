@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c5agtj34ksqlw"]
+
+[ext_resource type="Script" uid="uid://dpv8bgpgm31gu" path="res://Scenes/PistolBullet/PistolBullet.cs" id="1_l12ga"]
+[ext_resource type="Texture2D" uid="uid://b6xqklsirt5bk" path="res://Scenes/PistolBullet/PistolBullet.png" id="1_nchoa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pm0ju"]
+radius = 6.0
+height = 22.0
+
+[node name="PistolBullet" type="Area2D" unique_id=1242871792]
+script = ExtResource("1_l12ga")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1548576581]
+texture = ExtResource("1_nchoa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=347449868]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_pm0ju")

@@ -58,6 +58,21 @@ public sealed partial class Player : CharacterBody2D
         _frontArmRestOffsetX = _frontArm.Offset.X;
     }
 
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (Input.IsActionJustPressed("shoot"))
+        {
+            GD.Print("Player: shooting");
+            EventBus.EmitOnCreateBullet(
+                Position,
+                _frontArmPivot.GlobalPosition.DirectionTo(GetGlobalMousePosition()),
+                800f,
+                3f,
+                GD.Load<PackedScene>("res://Scenes/PistolBullet/PistolBullet.tscn")
+            );
+        }
+    }
+
     private void SetLimits()
     {
         _camera.LimitLeft = _cameraLeft;
@@ -89,6 +104,7 @@ public sealed partial class Player : CharacterBody2D
         }
 
         ApplyFacing();
+
     }
 
     // Mirrors the body and arm across x=0 when facing right.

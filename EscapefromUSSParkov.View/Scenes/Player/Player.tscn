@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c4dv3gdvdt5lw" path="res://Assets/Player/MainCharacter_Walk_Side_NoArms_003.png" id="4_825xp"]
 [ext_resource type="Texture2D" uid="uid://dini1sil1v4m6" path="res://Assets/Player/MainCharacter_Walk_Side_NoArms_004.png" id="5_ji083"]
 [ext_resource type="Texture2D" uid="uid://odc04sogee34" path="res://Assets/Player/MainCharacter_Arm_00.png" id="6_0kmp4"]
+[ext_resource type="PackedScene" uid="uid://byt0g7le4gxy3" path="res://Scenes/ProjectileSpawner/ProjectileSpawner.tscn" id="7_fk5o5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s0eop"]
 animations = [{
@@ -68,6 +69,9 @@ z_index = 1
 position = Vector2(0, -0.05)
 texture = ExtResource("6_0kmp4")
 offset = Vector2(-8.695, -1)
+
+[node name="ProjectileSpawner" parent="FrontArmPivot" unique_id=1792070632 instance=ExtResource("7_fk5o5")]
+position = Vector2(-16.6, -2.8000002)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068244061]
 visible = false
