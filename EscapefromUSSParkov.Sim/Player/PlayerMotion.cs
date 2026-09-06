@@ -5,7 +5,7 @@ namespace EscapefromUSSParkov.Sim.Player;
 
 public sealed class PlayerMotion
 {
-    public const float WalkingSpeed = 150.0f;
+    public const float WalkingSpeed = 90.0f;
 
     public Vector2 Position { get; set; }
     public Vector2 Velocity { get; set; }
