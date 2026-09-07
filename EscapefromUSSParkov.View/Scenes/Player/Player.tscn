@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bv1ph7f80ty52" path="res://Assets/Player/three-quarter-view/MainCharacter_Idle_34_NoArms_0003.png" id="4_spxdj"]
 [ext_resource type="Texture2D" uid="uid://yhe4cdow7pag" path="res://Assets/Player/three-quarter-view/MainCharacter_Idle_34_NoArms_0004.png" id="5_0objx"]
 [ext_resource type="Texture2D" uid="uid://odc04sogee34" path="res://Assets/Player/MainCharacter_Arm_00.png" id="6_0kmp4"]
+[ext_resource type="PackedScene" uid="uid://byt0g7le4gxy3" path="res://Scenes/ProjectileSpawner/ProjectileSpawner.tscn" id="7_fk5o5"]
 [ext_resource type="Texture2D" uid="uid://cv33m6xvk3wx2" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_34_NoArms_0001.png" id="6_w71ue"]
 [ext_resource type="Texture2D" uid="uid://dg34rcvipo1wn" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_34_NoArms_0002.png" id="7_1e6p3"]
 [ext_resource type="Texture2D" uid="uid://dkd8gfx8d2jbk" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_34_NoArms_0003.png" id="8_yb677"]
@@ -78,13 +79,14 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0grf"]
 radius = 15.0
 
-[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_frontArmPivot", "_frontArm", "_aimLine")]
+[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_frontArmPivot", "_bulletSpawnPoint", "_frontArm", "_aimLine")]
 scale = Vector2(2, 2)
 script = ExtResource("1_s0eop")
 _sprite = NodePath("AnimatedSprite2D")
 _collision = NodePath("CollisionShape2D")
 _camera = NodePath("PlayerCam")
 _frontArmPivot = NodePath("FrontArmPivot")
+_bulletSpawnPoint = NodePath("FrontArmPivot/ProjectileSpawner")
 _frontArm = NodePath("FrontArmPivot/FrontArm")
 _aimLine = NodePath("Line2D")
 
@@ -102,6 +104,9 @@ z_index = 1
 position = Vector2(0, -0.05)
 texture = ExtResource("6_0kmp4")
 offset = Vector2(-8.695, -1)
+
+[node name="ProjectileSpawner" parent="FrontArmPivot" unique_id=1792070632 instance=ExtResource("7_fk5o5")]
+position = Vector2(20.1, -2.3000002)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068244061]
 visible = false

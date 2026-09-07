@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://byt0g7le4gxy3"]
+
+[ext_resource type="Script" uid="uid://boq8ca57s83mh" path="res://Scenes/ProjectileSpawner/ProjectileSpawner.cs" id="1_xvl0b"]
+
+[node name="ProjectileSpawner" type="Marker2D" unique_id=1792070632]
+script = ExtResource("1_xvl0b")
