@@ -16,6 +16,7 @@ public sealed partial class Player : CharacterBody2D
     [Export] private Camera2D _camera;
 
     [Export] private Marker2D _frontArmPivot;
+    [Export] private Marker2D _bulletSpawnPoint;
     [Export] private Sprite2D _frontArm;
     [Export] private Line2D _aimLine;
 
@@ -60,12 +61,11 @@ public sealed partial class Player : CharacterBody2D
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        if (Input.IsActionJustPressed("shoot"))
+        if (@event.IsActionPressed("shoot"))
         {
-            GD.Print("Player: shooting");
             EventBus.EmitOnCreateBullet(
-                Position,
-                _frontArmPivot.GlobalPosition.DirectionTo(GetGlobalMousePosition()),
+                _bulletSpawnPoint.GlobalPosition,
+                Vector2.FromAngle(_bulletSpawnPoint.GlobalRotation),
                 800f,
                 3f,
                 GD.Load<PackedScene>("res://Scenes/PistolBullet/PistolBullet.tscn")

@@ -17,8 +17,10 @@ public abstract partial class BulletBase : ProjectileBase
     // isn't applied yet — there's no health/damage component to receive it;
     // wiring Damage through to one is tracked by the brief's still-open
     // "extract one Sim rule, preferably accuracy/spread or damage" item.
+
     protected override void OnHit(Node2D other)
     {
+        GD.Print($"PistolBullet hit {other.Name}!");
         QueueFree();
     }
 }

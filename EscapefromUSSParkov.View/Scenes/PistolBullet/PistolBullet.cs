@@ -16,4 +16,5 @@ public sealed partial class PistolBullet : BulletBase
     {
         //TBD
     }
+
 }

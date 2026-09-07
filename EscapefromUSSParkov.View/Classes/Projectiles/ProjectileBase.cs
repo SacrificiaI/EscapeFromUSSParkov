@@ -10,6 +10,7 @@ public abstract partial class ProjectileBase : Area2D
     [Export] private float _speed = 800f;
     [Export] private float _lifetimeSeconds = 3f;
 
+
     private Vector2 _direction;
     private float _timeAlive;
 
@@ -30,11 +31,14 @@ public abstract partial class ProjectileBase : Area2D
         BodyEntered += OnBodyEntered;
     }
 
-    public override void _ExitTree()
-    {
-        AreaEntered -= OnAreaEntered;
-        BodyEntered -= OnBodyEntered;
-    }
+    // No matching -= in _ExitTree here, unlike the usual pairing rule: that
+    // rule protects a longer-lived emitter (e.g. the EventBus autoload) from
+    // holding a dangling delegate into a node that outlived its subscription.
+    // AreaEntered/BodyEntered are signals this node emits on itself, handled
+    // by a method also on itself — emitter and subscriber are freed together,
+    // so there's no surviving object left to hold a stale reference. Godot's
+    // own node teardown already severs the connection; an explicit -= here
+    // just races it and logs a harmless "nonexistent connection" error.
 
     public override void _PhysicsProcess(double delta)
     {

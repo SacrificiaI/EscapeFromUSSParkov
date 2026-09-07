@@ -47,13 +47,14 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0grf"]
 radius = 15.0
 
-[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_frontArmPivot", "_frontArm", "_aimLine")]
+[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_frontArmPivot", "_bulletSpawnPoint", "_frontArm", "_aimLine")]
 scale = Vector2(2, 2)
 script = ExtResource("1_s0eop")
 _sprite = NodePath("AnimatedSprite2D")
 _collision = NodePath("CollisionShape2D")
 _camera = NodePath("PlayerCam")
 _frontArmPivot = NodePath("FrontArmPivot")
+_bulletSpawnPoint = NodePath("FrontArmPivot/ProjectileSpawner")
 _frontArm = NodePath("FrontArmPivot/FrontArm")
 _aimLine = NodePath("Line2D")
 
@@ -71,7 +72,7 @@ texture = ExtResource("6_0kmp4")
 offset = Vector2(-8.695, -1)
 
 [node name="ProjectileSpawner" parent="FrontArmPivot" unique_id=1792070632 instance=ExtResource("7_fk5o5")]
-position = Vector2(-16.6, -2.8000002)
+position = Vector2(20.1, -2.3000002)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068244061]
 visible = false
