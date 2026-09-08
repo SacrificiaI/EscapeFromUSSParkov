@@ -10,7 +10,6 @@ height = 20.0
 [node name="PistolBullet" type="Area2D" unique_id=1242871792]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_l12ga")
-_spriteRotationOffset = 1.5707964
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1548576581]
 position = Vector2(-5.9604645e-08, -6.5312514)

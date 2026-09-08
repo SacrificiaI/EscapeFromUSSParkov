@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bv1ph7f80ty52" path="res://Assets/Player/three-quarter-view/MainCharacter_Idle_34_NoArms_0003.png" id="4_spxdj"]
 [ext_resource type="Texture2D" uid="uid://yhe4cdow7pag" path="res://Assets/Player/three-quarter-view/MainCharacter_Idle_34_NoArms_0004.png" id="5_0objx"]
 [ext_resource type="Texture2D" uid="uid://odc04sogee34" path="res://Assets/Player/MainCharacter_Arm_00.png" id="6_0kmp4"]
-[ext_resource type="PackedScene" uid="uid://byt0g7le4gxy3" path="res://Scenes/ProjectileSpawner/ProjectileSpawner.tscn" id="7_fk5o5"]
 [ext_resource type="Texture2D" uid="uid://cv33m6xvk3wx2" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_34_NoArms_0001.png" id="6_w71ue"]
 [ext_resource type="Texture2D" uid="uid://dg34rcvipo1wn" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_34_NoArms_0002.png" id="7_1e6p3"]
+[ext_resource type="PackedScene" uid="uid://byt0g7le4gxy3" path="res://Scenes/ProjectileSpawner/ProjectileSpawner.tscn" id="7_fk5o5"]
 [ext_resource type="Texture2D" uid="uid://dkd8gfx8d2jbk" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_34_NoArms_0003.png" id="8_yb677"]
 [ext_resource type="Texture2D" uid="uid://b1iajq2rsw72b" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_34_NoArms_0004.png" id="9_8cj01"]
 [ext_resource type="Texture2D" uid="uid://clte0fg8d8an7" path="res://Assets/Player/three-quarter-view/MainCharacter_Walk_Back_34_NoArms_0001.png" id="10_i2g7t"]
@@ -79,7 +79,7 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0grf"]
 radius = 15.0
 
-[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_frontArmPivot", "_bulletSpawnPoint", "_frontArm", "_aimLine")]
+[node name="Player" type="CharacterBody2D" unique_id=638747636 node_paths=PackedStringArray("_sprite", "_collision", "_camera", "_frontArmPivot", "_bulletSpawnPoint", "_aimlineSpawnPoint", "_frontArm", "_aimLine")]
 scale = Vector2(2, 2)
 script = ExtResource("1_s0eop")
 _sprite = NodePath("AnimatedSprite2D")
@@ -87,6 +87,7 @@ _collision = NodePath("CollisionShape2D")
 _camera = NodePath("PlayerCam")
 _frontArmPivot = NodePath("FrontArmPivot")
 _bulletSpawnPoint = NodePath("FrontArmPivot/ProjectileSpawner")
+_aimlineSpawnPoint = NodePath("FrontArmPivot/AimlineStart")
 _frontArm = NodePath("FrontArmPivot/FrontArm")
 _aimLine = NodePath("Line2D")
 
@@ -96,7 +97,6 @@ animation = &"move_side"
 frame_progress = 0.46125707
 
 [node name="FrontArmPivot" type="Marker2D" parent="." unique_id=187879782]
-visible = false
 position = Vector2(1.6, -6.2)
 
 [node name="FrontArm" type="Sprite2D" parent="FrontArmPivot" unique_id=579551767]
@@ -106,7 +106,10 @@ texture = ExtResource("6_0kmp4")
 offset = Vector2(-8.695, -1)
 
 [node name="ProjectileSpawner" parent="FrontArmPivot" unique_id=1792070632 instance=ExtResource("7_fk5o5")]
-position = Vector2(20.1, -2.3000002)
+position = Vector2(16.9, -1.8000002)
+
+[node name="AimlineStart" type="Marker2D" parent="FrontArmPivot" unique_id=214496846]
+position = Vector2(11.4, -5.3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068244061]
 visible = false
