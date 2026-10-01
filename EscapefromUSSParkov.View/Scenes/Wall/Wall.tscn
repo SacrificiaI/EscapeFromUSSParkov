@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cxrmtbjpp0n77"]
+
+[ext_resource type="Texture2D" uid="uid://ccjlmmou6ows3" path="res://Assets/Background/temp-tile-01.png" id="1_xp40h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pm0ju"]
+size = Vector2(20, 89)
+
+[node name="Wall" type="Area2D" unique_id=1777715045]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1841863230]
+position = Vector2(0, -1.5)
+scale = Vector2(0.5999993, 2.7600007)
+texture = ExtResource("1_xp40h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1731704386]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_pm0ju")

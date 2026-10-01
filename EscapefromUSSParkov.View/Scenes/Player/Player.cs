@@ -42,6 +42,8 @@ public sealed partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
+        AddToGroup("player");
+
         SetLimits();
 
         // Sets initial position to the node's position in-engine

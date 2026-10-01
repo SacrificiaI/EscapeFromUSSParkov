@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://s0s6tx8r2q5p" path="res://Scenes/Player/Player.tscn" id="2_bgw71"]
 [ext_resource type="Texture2D" uid="uid://waeptbr6rqvq" path="res://Assets/Background/Environment32.png" id="2_lmtt4"]
 [ext_resource type="PackedScene" uid="uid://dqldeeqmm1eiy" path="res://Scenes/GameHud/GameHud.tscn" id="3_78m1b"]
+[ext_resource type="PackedScene" uid="uid://dmtpxhf4uyihn" path="res://Scenes/MantisEnemy/MantisEnemy.tscn" id="5_ooqsx"]
+[ext_resource type="PackedScene" uid="uid://cxrmtbjpp0n77" path="res://Scenes/Wall/Wall.tscn" id="6_txgif"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ooqsx"]
 texture = ExtResource("2_lmtt4")
@@ -81,6 +83,9 @@ texture = ExtResource("2_3lxj6")
 sources/1 = SubResource("TileSetAtlasSource_lmtt4")
 sources/0 = SubResource("TileSetAtlasSource_ooqsx")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pkrlc"]
+radius = 100.0
+
 [node name="LevelBase" type="Control" unique_id=1941503275]
 layout_mode = 3
 anchors_preset = 15
@@ -104,7 +109,22 @@ _cameraRight = 1500
 _cameraTop = -50
 _cameraBottom = 1200
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player" unique_id=491913708]
+shape = SubResource("CircleShape2D_pkrlc")
+
 [node name="Enemies" type="Node" parent="." unique_id=872552878]
+
+[node name="MantisEnemy" parent="Enemies" unique_id=211971626 instance=ExtResource("5_ooqsx")]
+position = Vector2(1000, 459)
+scale = Vector2(0.2, 0.2)
+
+[node name="Environment" type="Node" parent="." unique_id=47092297]
+
+[node name="WallVert" parent="Environment" unique_id=1777715045 instance=ExtResource("6_txgif")]
+position = Vector2(933, 512)
+
+[node name="WallVert2" parent="Environment" unique_id=846022116 instance=ExtResource("6_txgif")]
+position = Vector2(931, 399)
 
 [node name="ObjectMaker" type="Node" parent="." unique_id=185748738]
 

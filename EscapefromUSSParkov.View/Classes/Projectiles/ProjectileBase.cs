@@ -2,9 +2,6 @@ using Godot;
 
 namespace EscapefromUSSParkov.View;
 
-// Shared base for every projectile variant (Bullet and whatever follows it).
-// Owns movement, lifetime, and hit detection; a subclass only decides what a
-// hit actually does (damage, VFX, self-destruction, ...) via OnHit.
 public abstract partial class ProjectileBase : Area2D
 {
     [Export] private float _speed = 800f;
@@ -36,9 +33,7 @@ public abstract partial class ProjectileBase : Area2D
     // holding a dangling delegate into a node that outlived its subscription.
     // AreaEntered/BodyEntered are signals this node emits on itself, handled
     // by a method also on itself — emitter and subscriber are freed together,
-    // so there's no surviving object left to hold a stale reference. Godot's
-    // own node teardown already severs the connection; an explicit -= here
-    // just races it and logs a harmless "nonexistent connection" error.
+    // so there's no surviving object left to hold a stale reference.
 
     public override void _PhysicsProcess(double delta)
     {
@@ -57,9 +52,5 @@ public abstract partial class ProjectileBase : Area2D
 
     private void OnBodyEntered(Node2D body) => OnHit(body);
 
-    // Subclass hook: react to whatever this projectile just touched (deal
-    // damage, spawn an impact effect, QueueFree itself, ...). Movement,
-    // lifetime, and signal wiring are handled here so a variant only needs
-    // to implement this one thing.
     protected abstract void OnHit(Node2D other);
 }

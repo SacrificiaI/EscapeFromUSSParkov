@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dmtpxhf4uyihn"]
+
+[ext_resource type="Texture2D" uid="uid://bi0ml0t30ypip" path="res://icon.svg" id="1_c4kn0"]
+[ext_resource type="Script" uid="uid://qcoacwew1fx8" path="res://Scenes/MantisEnemy/MantisEnemy.cs" id="2_mantis"]
+[ext_resource type="Script" uid="uid://cs5rlv61fo1gs" path="res://Resources/EnemyStats.cs" id="3_stats"]
+
+[sub_resource type="Resource" id="Resource_mantis"]
+script = ExtResource("3_stats")
+metadata/_custom_type_script = "uid://cs5rlv61fo1gs"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pm0ju"]
+radius = 100.0
+
+[node name="MantisEnemy" type="Area2D" unique_id=211971626]
+script = ExtResource("2_mantis")
+Stats = SubResource("Resource_mantis")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1323170916]
+shape = SubResource("CircleShape2D_pm0ju")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1653344836]
+texture = ExtResource("1_c4kn0")

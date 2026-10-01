@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d2xjf5bp2s8nh"]
+
+[ext_resource type="Script" uid="uid://c388mcbs2342r" path="res://Scenes/EnemyBase/EnemyBase.cs" id="1_coq1q"]
+[ext_resource type="Script" uid="uid://cs5rlv61fo1gs" path="res://Resources/EnemyStats.cs" id="2_7id8g"]
+
+[sub_resource type="Resource" id="Resource_coq1q"]
+script = ExtResource("2_7id8g")
+metadata/_custom_type_script = "uid://cs5rlv61fo1gs"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pm0ju"]
+
+[node name="EnemyBase" type="Area2D" unique_id=1756221729]
+script = ExtResource("1_coq1q")
+Stats = SubResource("Resource_coq1q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=93572139]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=546513044]
+shape = SubResource("RectangleShape2D_pm0ju")
